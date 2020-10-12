@@ -168,6 +168,44 @@ void test_conversion(struct test_rec *t, uint64_t val)
 		     result, result, diff, diff, mindiff, maxdiff);
 }
 
+/**
+ * @brief Test clock uptime APIs functionality
+ *
+ * @details
+ * Test Objective:
+ * - This test verify time covent API
+ *
+ * Testing techniques:
+ * - Interface testing
+ * - Equivalence classes and input parition testing
+ *   include boundary value analysis
+ *
+ * Prerequisite Conditions:
+ * - N/A
+ *
+ * Input Specifications:
+ * - N/A
+ *
+ * Test Procedure:
+ * - Call the time convert API, and check the result of time convert.
+ *   The difference is allowed to be in the range [0:from_hz) if we are rounding down,
+ *   from (-from_hz:0] if we are rounding up, or [-from_hz/2:from_hz/2]
+ *   if we are rounding to the nearest.
+ *
+ * Expected Test Result:
+ * - Convert time difference in the range.
+ *
+ * Pass/Fail Criteria:
+ * - Success if the result of convert time in the range.
+ * - Failure if the result of convert time out of the range.
+ *
+ * Assumptions and Constraints:
+ * - N/A
+ *
+ * @ingroup kernel_thread_tests
+ *
+ * @see z_tmcvt()
+ */
 void test_time_conversions(void)
 {
 	for (int i = 0; i < ARRAY_SIZE(tests); i++) {
